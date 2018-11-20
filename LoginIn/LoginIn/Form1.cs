@@ -19,6 +19,10 @@ namespace LoginIn
             InitializeComponent();
         }
         string KodAdmina = "123";
+        int a = 0;
+        int b = 0;
+        int k = 0;
+        int f = 0;
 
         string[] Status = { "Студент", "Преподаватель", "Администратор" };
         string[] Faculty = {"Физико-математический","Естественно-географический",
@@ -153,8 +157,10 @@ namespace LoginIn
 
             label10.Visible = false;
             textBox2.Visible = false;
+
             label10.Enabled = false;
             textBox2.Enabled = false;
+
             label14.Visible = false;
             label12.Visible = false;
 
@@ -162,7 +168,7 @@ namespace LoginIn
             tb2Password.MaxLength = 20;
             tb3PassConf.MaxLength = 20;
             tb7Year.MaxLength = 4;
-                    
+            
 
             for (int i = 0; i < Status.Length; i++)
             {
@@ -182,7 +188,8 @@ namespace LoginIn
         private void cb4Status_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cb4Status.Text == "Администратор")
-            {   cb5Faculty.Enabled = false;
+            {
+                cb5Faculty.Enabled = false;
                 cb6Spec.Enabled = false;
                 cb5Faculty.Visible = false;
                 cb6Spec.Visible = false;
@@ -198,16 +205,55 @@ namespace LoginIn
                 label10.Enabled = true;
                 textBox2.Enabled = true;
                 label14.Visible = true;
-            }
-            if (cb4Status.Text == "Преподаватель")
-            {
-                cb5Faculty.Enabled = false;
-                cb6Spec.Enabled = false;
+
+              
             }
             else
             {
-                cb5Faculty.Enabled = true;
-                cb6Spec.Enabled = true;
+                if (cb4Status.Text == "Преподаватель")
+                {
+                    cb5Faculty.Enabled = true;
+                    cb6Spec.Enabled = true;
+                    cb5Faculty.Visible = true;
+                    cb6Spec.Visible = true;
+                    tb7Year.Enabled = true;
+                    tb7Year.Visible = true;
+                    label6.Visible = true;
+                    label5.Visible = true;
+                    label7.Visible = true;
+
+
+                    label10.Visible = false;
+                    textBox2.Visible = false;
+                    label10.Enabled = false;
+                    textBox2.Enabled = false;
+                    label14.Visible = false;
+
+                    cb5Faculty.Enabled = false;
+                    cb6Spec.Enabled = false;
+                }
+                else
+                {
+                    cb5Faculty.Enabled = true;
+                    cb6Spec.Enabled = true;
+                    cb5Faculty.Visible = true;
+                    cb6Spec.Visible = true;
+                    tb7Year.Enabled = true;
+                    tb7Year.Visible = true;
+                    label6.Visible = true;
+                    label5.Visible = true;
+                    label7.Visible = true;
+
+
+                    label10.Visible = false;
+                    textBox2.Visible = false;
+                    label10.Enabled = false;
+                    textBox2.Enabled = false;
+                    label14.Visible = false;
+
+                    cb5Faculty.Enabled = true;
+                    cb6Spec.Enabled = true;                   
+                }
             }
         }
 
@@ -291,23 +337,45 @@ namespace LoginIn
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int a = 0;
+            int b = 0;
+            int k = 0;
+            int f = 0;
+
+            label11.Text = "";
+            label14.Text = "";
+
             if (KodAdmina == textBox2.Text)
-            { /*ничего не происходит*/ }
+            { /*ничего не происходит*/a = 1; }
             else
             {
               label14.Text = "Похоже, Вы совсем не админушка.";
+               
             }
-              label0.Text = "";
-     //       int n = dataGridView1.Rows.Count; определение количества строк
+             
 
-            if (tb2Password.Text == tb3PassConf.Text)
+           if (tb2Password.Text.Length > 3)
             {
-                label11.Text = "Пароли совпадают";
+                if (tb2Password.Text == tb3PassConf.Text)
+                {
+                    label11.Text = "Пароли совпадают";
+                    b = 1;
+                }
+                else
+                {
+                    label11.Text = "Пароли не совпадают";
+                    
+                }
+
             }
             else
             {
-                label11.Text = "Пароли не совпадают";
+                label11.Text = "Пароль слишком короткий. Минимальное количество знаков: 4";
+                
             }
+
+           
+
             try
             {
                 int Value = Convert.ToInt32(tb7Year.Text);
@@ -315,22 +383,36 @@ namespace LoginIn
                 { }
                 else
                 {
-                    label12.Text = " Вы уверены, что это Ваш год поступления?";
+                    label12.Text = "Вы уверены, что это Ваш год поступления?";
                 }
             }
-            catch { label12.Text = " Вы уверены, что это Ваш год поступления?"; }
-            
+            catch { label12.Text = "Вы уверены, что это Ваш год поступления?"; }
+
             foreach (Control ctrl in Controls)
             {
+
                 if (ctrl.GetType() == typeof(TextBox))
                     if (ctrl.Text == "")
                     {
                         label0.Text = "Некоторые поля не заполнены.";
+                        
+                    }
+                    else
+                    {
+                        label0.Text = "";
+                        f = 1;
                     }
             }
-            // dataGridView1.AllowUserToAddRows = true;
-            //  dataGridView1.Rows[1].Cells[2].Value = textBox1.Text;
 
+            if ((a == 1||k==1) && b == 1 && f == 1)
+            {
+                MessageBox.Show("Вы успешно зарегистрировались!");
+            }
+            else
+            {
+                //Запрет на передачу данных
+            }
+            MessageBox.Show(a + "/" + b + "/" + f+"/"+k);
         }
 
 
@@ -342,20 +424,29 @@ namespace LoginIn
             // tb1Username.Text  отправляем строку для проверки.
             Login myLog = new Login();
             string serialized = JsonConvert.SerializeObject(myLog);
-            if (tb1Username.Text == serialized)
+            
+            if (tb1Username.Text.Length > 0)
             {
-                label13.Text = "Такой логин уже существует. Придумайте другой.";
+                label13.Text = "";
+                if (tb1Username.Text == serialized)
+                {
+                    label13.Text = "Такой логин уже существует. Придумайте другой.";
+                }
+                if (tb1Username.Text != serialized)
+                {
+                    label13.Text = "Ваш логин оригинален!";
+                    tb2Password.Enabled = true;
+                    tb3PassConf.Enabled = true;
+                    cb4Status.Enabled = true;
+                    cb5Faculty.Enabled = true;
+                    cb6Spec.Enabled = true;
+                    tb7Year.Enabled = true;
+                    tb8Mail.Enabled = true;
+                }
             }
-            if (tb1Username.Text != serialized)
+            else
             {
-                label0.Text = "Ваш логин оригинален!";
-                tb2Password.Enabled = true;
-                tb3PassConf.Enabled = true;
-                cb4Status.Enabled = true;
-                cb5Faculty.Enabled = true;
-                cb6Spec.Enabled = true;
-                tb7Year.Enabled = true;
-                tb8Mail.Enabled = true;
+                label13.Text = "Логин слишком короткий!";
             }
         }
         private void tb7Year_KeyPress(object sender, KeyPressEventArgs e)

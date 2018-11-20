@@ -58,17 +58,16 @@
             // label0
             // 
             this.label0.AutoSize = true;
-            this.label0.Location = new System.Drawing.Point(133, 225);
+            this.label0.Location = new System.Drawing.Point(28, 211);
             this.label0.Name = "label0";
-            this.label0.Size = new System.Drawing.Size(52, 13);
+            this.label0.Size = new System.Drawing.Size(0, 13);
             this.label0.TabIndex = 2;
-            this.label0.Text = "коммент";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(21, 220);
+            this.button1.Location = new System.Drawing.Point(60, 238);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(107, 23);
             this.button1.TabIndex = 3;
             this.button1.Text = "register";
             this.button1.UseVisualStyleBackColor = true;
@@ -151,7 +150,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 184);
+            this.label8.Location = new System.Drawing.Point(14, 188);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(26, 13);
             this.label8.TabIndex = 12;
@@ -281,7 +280,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(596, 334);
+            this.ClientSize = new System.Drawing.Size(445, 334);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
