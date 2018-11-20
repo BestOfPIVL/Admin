@@ -187,74 +187,20 @@ namespace LoginIn
 
         private void cb4Status_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cb4Status.Text == "Администратор")
-            {
-                cb5Faculty.Enabled = false;
-                cb6Spec.Enabled = false;
-                cb5Faculty.Visible = false;
-                cb6Spec.Visible = false;
-                tb7Year.Enabled = false;
-                tb7Year.Visible = false;
-                label6.Visible = false;
-                label5.Visible = false;
-                label7.Visible = false;
-
-
-                label10.Visible = true;
-                textBox2.Visible = true;
-                label10.Enabled = true;
-                textBox2.Enabled = true;
-                label14.Visible = true;
-
-              
-            }
-            else
-            {
-                if (cb4Status.Text == "Преподаватель")
-                {
-                    cb5Faculty.Enabled = true;
-                    cb6Spec.Enabled = true;
-                    cb5Faculty.Visible = true;
-                    cb6Spec.Visible = true;
-                    tb7Year.Enabled = true;
-                    tb7Year.Visible = true;
-                    label6.Visible = true;
-                    label5.Visible = true;
-                    label7.Visible = true;
-
-
-                    label10.Visible = false;
-                    textBox2.Visible = false;
-                    label10.Enabled = false;
-                    textBox2.Enabled = false;
-                    label14.Visible = false;
-
-                    cb5Faculty.Enabled = false;
-                    cb6Spec.Enabled = false;
-                }
-                else
-                {
-                    cb5Faculty.Enabled = true;
-                    cb6Spec.Enabled = true;
-                    cb5Faculty.Visible = true;
-                    cb6Spec.Visible = true;
-                    tb7Year.Enabled = true;
-                    tb7Year.Visible = true;
-                    label6.Visible = true;
-                    label5.Visible = true;
-                    label7.Visible = true;
-
-
-                    label10.Visible = false;
-                    textBox2.Visible = false;
-                    label10.Enabled = false;
-                    textBox2.Enabled = false;
-                    label14.Visible = false;
-
-                    cb5Faculty.Enabled = true;
-                    cb6Spec.Enabled = true;                   
-                }
-            }
+            cb5Faculty.Enabled = cb4Status.Text != "Администратор" && cb4Status.Text != "Преподаватель";
+            cb6Spec.Enabled = cb4Status.Text != "Администратор" && cb4Status.Text != "Преподаватель";
+            cb5Faculty.Visible = cb4Status.Text != "Администратор";
+            cb6Spec.Visible = cb4Status.Text != "Администратор";
+            tb7Year.Enabled = cb4Status.Text != "Администратор";
+            tb7Year.Visible = cb4Status.Text != "Администратор";
+            label6.Visible = cb4Status.Text != "Администратор";
+            label5.Visible = cb4Status.Text != "Администратор";
+            label7.Visible = cb4Status.Text != "Администратор";
+            label10.Visible = cb4Status.Text == "Администратор";
+            textBox2.Visible = cb4Status.Text == "Администратор";
+            label10.Enabled = cb4Status.Text == "Администратор";
+            textBox2.Enabled = cb4Status.Text == "Администратор";
+            label14.Visible = cb4Status.Text == "Администратор";
         }
 
         private void Cb5Faculty_SelectedIndexChanged(object sender, EventArgs e)
